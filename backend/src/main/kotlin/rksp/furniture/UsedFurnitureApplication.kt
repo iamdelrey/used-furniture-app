@@ -1,5 +1,6 @@
 ﻿package rksp.furniture
 
+import org.springframework.boot.SpringApplication
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
 
@@ -7,5 +8,6 @@ import org.springframework.boot.runApplication
 open class UsedFurnitureApplication
 
 fun main(args: Array<String>) {
-    runApplication<UsedFurnitureApplication>(*args)
+    SpringApplication.run(UsedFurnitureApplication::class.java, *args)
 }
+
