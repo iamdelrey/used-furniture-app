@@ -1,44 +1,20 @@
-import React, { useEffect, useState } from 'react'
-import axios from 'axios'
+import React from 'react'
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom'
 import AddItemForm from './components/AddItemForm'
+import HomePage from './components/HomePage'
 
 function App() {
-  const [items, setItems] = useState([])
-
-  useEffect(() => {
-    fetchItems()
-  }, [])
-
-  const fetchItems = async () => {
-    try {
-      const res = await axios.get(
-          process.env.REACT_APP_API_URL
-              ? `${process.env.REACT_APP_API_URL}/api/items`
-              : '/api/items'
-      )
-      setItems(res.data)
-    } catch (err) {
-      console.error('Ошибка при загрузке:', err)
-    }
-  }
-
-  const handleItemAdded = newItem => {
-    setItems([...items, newItem])
-  }
-
-  return (
-      <div style={{ padding: '2rem' }}>
-        <h1>Каталог подержанной мебели</h1>
-        <AddItemForm onItemAdded={handleItemAdded} />
-        <ul>
-          {items.map(item => (
-              <li key={item.id}>
-                <strong>{item.title}</strong> — {item.condition} — {item.price} ₽
-              </li>
-          ))}
-        </ul>
-      </div>
-  )
+    return (
+        <Router>
+            <nav style={{ padding: '1rem' }}>
+                <Link to="/">Каталог</Link> | <Link to="/add">Добавить</Link>
+            </nav>
+            <Routes>
+                <Route path="/" element={<HomePage />} />
+                <Route path="/add" element={<AddItemForm onItemAdded={() => {}} />} />
+            </Routes>
+        </Router>
+    )
 }
 
 export default App
