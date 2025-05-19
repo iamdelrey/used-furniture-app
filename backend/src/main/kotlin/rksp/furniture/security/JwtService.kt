@@ -9,14 +9,13 @@ import javax.crypto.SecretKey
 
 @Service
 class JwtService {
-
     private val secretKey: SecretKey = Keys.secretKeyFor(SignatureAlgorithm.HS256)
 
     fun generateToken(username: String): String {
         return Jwts.builder()
             .setSubject(username)
             .setIssuedAt(Date())
-            .setExpiration(Date(System.currentTimeMillis() + 1000 * 60 * 60 * 24)) // 1 день
+            .setExpiration(Date(System.currentTimeMillis() + 1000 * 60 * 60 * 595))
             .signWith(secretKey)
             .compact()
     }
@@ -27,8 +26,7 @@ class JwtService {
                 .setSigningKey(secretKey)
                 .build()
                 .parseClaimsJws(token)
-                .body
-                .subject
+                .body.subject
         } catch (e: Exception) {
             null
         }

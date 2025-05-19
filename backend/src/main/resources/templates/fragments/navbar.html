@@ -1,0 +1,22 @@
+﻿<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" href="/css/navbar.css">
+</head>
+<body>
+<div th:fragment="navbar">
+    <div class="navbar">
+        <div class="navbar-inner">
+            <div class="navbar-logo">Used Furniture</div>
+            <nav>
+                <a href="/home" th:classappend="${currentPath == '/home'} ? 'active'">Главная</a>
+                <a href="/catalog" th:classappend="${currentPath == '/catalog'} ? 'active'">Каталог</a>
+                <a href="/messages" th:classappend="${currentPath == '/messages'} ? 'active'">Сообщения</a>
+                <a href="/sales" th:classappend="${currentPath == '/sales'} ? 'active'">Продажи</a>
+                <a href="/account" th:classappend="${currentPath == '/account'} ? 'active'">Аккаунт</a>
+            </nav>
+        </div>
+    </div>
+</div>
+</body>
+</html>

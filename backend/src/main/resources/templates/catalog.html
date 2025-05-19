@@ -1,0 +1,22 @@
+﻿<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Каталог</title>
+</head>
+<body>
+<div th:replace="~{fragments/navbar :: navbar}"></div>
+<h2>Каталог мебели</h2>
+<ul>
+    <li th:each="item : ${items}">
+        <b th:text="${item.title}"></b> —
+        <span th:text="${item.description}"></span><br>
+        Цена: <span th:text="${item.price}"></span> ₽<br>
+        Продавец: <span th:text="${item.seller}"></span><br>
+        Состояние: <span th:text="${item.condition}"></span>
+        <hr>
+    </li>
+</ul>
+<a href="/home">На главную</a>
+</body>
+</html>

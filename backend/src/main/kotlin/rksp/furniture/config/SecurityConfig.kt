@@ -6,23 +6,25 @@ import org.springframework.security.authentication.AuthenticationManager
 import org.springframework.security.authentication.ProviderManager
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider
 import org.springframework.security.config.annotation.web.builders.HttpSecurity
+import org.springframework.security.config.http.SessionCreationPolicy
 import org.springframework.security.core.userdetails.UserDetailsService
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
 import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.security.web.SecurityFilterChain
-import rksp.furniture.service.CustomUserDetailsService
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter
+import rksp.furniture.security.JwtAuthFilter
 
 @Configuration
-open class SecurityConfig {
+class SecurityConfig(
+    private val jwtAuthFilter: JwtAuthFilter,
+    private val userDetailsService: UserDetailsService
+) {
 
     @Bean
-    open fun passwordEncoder(): PasswordEncoder = BCryptPasswordEncoder()
+    fun passwordEncoder(): PasswordEncoder = BCryptPasswordEncoder()
 
     @Bean
-    open fun userDetailsService(): UserDetailsService = CustomUserDetailsService()
-
-    @Bean
-    open fun authenticationManager(
+    fun authenticationManager(
         userDetailsService: UserDetailsService,
         passwordEncoder: PasswordEncoder
     ): AuthenticationManager {
@@ -33,14 +35,25 @@ open class SecurityConfig {
     }
 
     @Bean
-    open fun filterChain(http: HttpSecurity): SecurityFilterChain {
+    fun filterChain(http: HttpSecurity): SecurityFilterChain {
         http
             .csrf { it.disable() }
             .authorizeHttpRequests {
-                it.requestMatchers("/auth/**").permitAll()
-                    .anyRequest().authenticated()
+                it
+                    .requestMatchers("/", "/home", "/login", "/register", "/catalog", "/css/**").permitAll()
+                    .requestMatchers("/api/**").authenticated()
+                    .anyRequest().denyAll()
             }
-            .httpBasic {}
+            .sessionManagement {
+                it.sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED)
+            }
+            .logout {
+                it
+                    .logoutUrl("/logout")
+                    .logoutSuccessUrl("/login")
+                    .permitAll()
+            }
+
         return http.build()
     }
 }

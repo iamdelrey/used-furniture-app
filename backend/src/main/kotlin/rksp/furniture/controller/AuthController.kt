@@ -1,47 +1,65 @@
 ﻿package rksp.furniture.controller
 
-import org.springframework.http.ResponseEntity
+import jakarta.servlet.http.HttpServletRequest
 import org.springframework.security.authentication.AuthenticationManager
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken
+import org.springframework.security.core.context.SecurityContextHolder
 import org.springframework.security.crypto.password.PasswordEncoder
+import org.springframework.stereotype.Controller
+import org.springframework.ui.Model
 import org.springframework.web.bind.annotation.*
-import rksp.furniture.auth.AuthRequest
-import rksp.furniture.auth.AuthResponse
 import rksp.furniture.model.User
 import rksp.furniture.repository.UserRepository
-import rksp.furniture.security.JwtService
 
-@RestController
-@RequestMapping("/auth")
+@Controller
 class AuthController(
     private val userRepository: UserRepository,
     private val passwordEncoder: PasswordEncoder,
-    private val jwtService: JwtService,
     private val authenticationManager: AuthenticationManager
 ) {
 
-    @PostMapping("/register")
-    fun register(@RequestBody request: AuthRequest): ResponseEntity<AuthResponse> {
-        if (userRepository.findByUsername(request.username).isPresent) {
-            return ResponseEntity.badRequest().build()
-        }
-
-        val user = User(
-            username = request.username,
-            password = passwordEncoder.encode(request.password)
-        )
-        userRepository.save(user)
-
-        val token = jwtService.generateToken(user.username)
-        return ResponseEntity.ok(AuthResponse(token))
-    }
+    @GetMapping("/login")
+    fun loginPage(): String = "login"
 
     @PostMapping("/login")
-    fun login(@RequestBody request: AuthRequest): ResponseEntity<AuthResponse> {
-        val authToken = UsernamePasswordAuthenticationToken(request.username, request.password)
-        authenticationManager.authenticate(authToken)
+    fun login(
+        @RequestParam username: String,
+        @RequestParam password: String,
+        model: Model,
+        request: HttpServletRequest
+    ): String {
+        return try {
+            val authToken = UsernamePasswordAuthenticationToken(username, password)
+            val auth = authenticationManager.authenticate(authToken)
 
-        val token = jwtService.generateToken(request.username)
-        return ResponseEntity.ok(AuthResponse(token))
+            SecurityContextHolder.getContext().authentication = auth
+
+            request.getSession(true)
+
+            "redirect:/home"
+        } catch (e: Exception) {
+            model.addAttribute("error", "Неверное имя пользователя или пароль")
+            "login"
+        }
+    }
+
+    @GetMapping("/register")
+    fun registerPage(): String = "register"
+
+    @PostMapping("/register")
+    fun register(
+        @RequestParam username: String,
+        @RequestParam password: String,
+        model: Model
+    ): String {
+        if (userRepository.findByUsername(username).isPresent) {
+            model.addAttribute("error", "Пользователь уже существует")
+            return "register"
+        }
+
+        val user = User(username = username, password = passwordEncoder.encode(password))
+        userRepository.save(user)
+
+        return "redirect:/login"
     }
 }
