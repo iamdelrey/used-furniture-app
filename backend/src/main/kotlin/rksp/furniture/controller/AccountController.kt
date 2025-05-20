@@ -8,16 +8,15 @@ import org.springframework.web.bind.annotation.GetMapping
 import jakarta.servlet.http.HttpServletRequest
 
 @Controller
-class HomeController {
-
-    @GetMapping("/home")
-    fun home(
+class AccountController {
+    @GetMapping("/account")
+    fun accountPage(
         @AuthenticationPrincipal user: User?,
         model: Model,
         request: HttpServletRequest
     ): String {
         model.addAttribute("username", user?.username ?: "Гость")
         model.addAttribute("currentPath", request.requestURI)
-        return "home"
+        return "account"
     }
 }

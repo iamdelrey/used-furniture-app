@@ -10,7 +10,6 @@ import rksp.furniture.repository.FurnitureRepository
 class CatalogController(
     private val furnitureRepository: FurnitureRepository
 ) {
-
     @GetMapping("/catalog")
     fun catalogPage(model: Model, request: HttpServletRequest): String {
         model.addAttribute("items", furnitureRepository.findAll())
