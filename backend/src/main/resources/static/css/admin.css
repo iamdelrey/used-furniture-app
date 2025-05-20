@@ -1,0 +1,129 @@
+﻿body {
+    margin: 0;
+    font-family: 'Segoe UI', 'Inter', Arial, sans-serif;
+    background: #f8fafc;
+    color: #1e293b;
+}
+
+/* Общие контейнеры */
+.admin-dashboard,
+.admin-section {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 24px;
+}
+
+/* Заголовки */
+.dashboard-title,
+.section-title {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #1e40af;
+    margin-bottom: 20px;
+}
+
+.stats-cards {
+    display: flex;
+    gap: 24px;
+    margin-bottom: 32px;
+}
+.card {
+    flex: 1;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+    padding: 24px;
+    text-align: center;
+    transition: transform 0.2s;
+}
+.card:hover { transform: translateY(-4px); }
+.card-value {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #2563eb;
+}
+.card-label {
+    margin-top: 8px;
+    font-size: 1rem;
+    color: #475569;
+}
+
+/* Ссылки-быстрый доступ */
+.quick-links .btn {
+    margin-right: 16px;
+}
+
+/* Таблицы */
+.admin-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 24px;
+}
+.admin-table th,
+.admin-table td {
+    padding: 12px 8px;
+    border-bottom: 1px solid #e2e8f0;
+}
+.admin-table th {
+    background: #f1f5f9;
+    text-align: left;
+}
+.btn-small {
+    padding: 6px 12px;
+    font-size: 0.85rem;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    margin-right: 6px;
+    background: #2563eb;
+    color: #fff;
+    transition: background 0.2s;
+}
+.btn-small:hover { background: #1e3a8a; }
+.btn-danger { background: #dc2626; }
+.btn-secondary { background: #64748b; }
+
+/* Сетка карточек объявлений */
+.cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 24px;
+    margin-bottom: 24px;
+}
+.item-card {
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.2s;
+}
+.item-card:hover { transform: translateY(-4px); }
+.item-img {
+    width: 100%;
+    height: 140px;
+    object-fit: contain;
+    background: #f3f4f6;
+}
+.item-info {
+    padding: 16px;
+    flex-grow: 1;
+}
+.item-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin: 0 0 8px;
+    color: #1e40af;
+}
+.item-seller,
+.item-price {
+    font-size: 0.95rem;
+    color: #475569;
+    margin: 4px 0;
+}
+.item-actions {
+    padding: 12px 16px;
+    border-top: 1px solid #e2e8f0;
+    text-align: right;
+}

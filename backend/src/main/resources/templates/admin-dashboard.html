@@ -1,0 +1,50 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Admin Dashboard | Used Furniture</title>
+  <!-- относительный путь к css/ рядом с этим html -->
+  <link rel="stylesheet" href="css/vintage-navbar.css">
+  <link rel="stylesheet" href="css/admin.css">
+</head>
+<body>
+
+  <!-- Навбар -->
+  <div class="navbar">
+    <!-- скопируйте содержимое vintage-navbar.css сюда -->
+    <div class="navbar-inner">
+      <div class="navbar-logo">Used Furniture</div>
+      <nav>
+        <a href="admin-dashboard.html" class="active">Дашборд</a>
+        <a href="admin-users.html">Пользователи</a>
+        <a href="admin-items.html">Объявления</a>
+      </nav>
+    </div>
+  </div>
+
+  <main class="admin-dashboard">
+    <h1 class="dashboard-title">Панель администратора</h1>
+
+    <div class="stats-cards">
+      <div class="card">
+        <div class="card-value">128</div>
+        <div class="card-label">Пользователей</div>
+      </div>
+      <div class="card">
+        <div class="card-value">342</div>
+        <div class="card-label">Объявлений</div>
+      </div>
+      <div class="card">
+        <div class="card-value">24</div>
+        <div class="card-label">Новых сегодня</div>
+      </div>
+    </div>
+
+    <div class="quick-links">
+      <a href="admin-users.html" class="btn">Управление пользователями</a>
+      <a href="admin-items.html" class="btn">Управление товарами</a>
+    </div>
+  </main>
+
+</body>
+</html>

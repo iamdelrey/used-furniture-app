@@ -1,0 +1,63 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Admin — Объявления | Used Furniture</title>
+  <link rel="stylesheet" href="css/vintage-navbar.css">
+  <link rel="stylesheet" href="css/admin.css">
+</head>
+<body>
+  <!-- Навбар -->
+  <div class="navbar">
+    <div class="navbar-inner">
+      <div class="navbar-logo">Used Furniture</div>
+      <nav>
+        <a href="home.html">Главная</a>
+        <a href="catalog.html">Каталог</a>
+        <a href="messages.html">Сообщения</a>
+        <a href="sales.html">Продажи</a>
+        <a href="account.html">Аккаунт</a>
+        <a href="admin-dashboard.html">Админ</a>
+      </nav>
+    </div>
+  </div>
+
+  <main class="admin-section">
+    <h1 class="section-title">Управление объявлениями</h1>
+
+    <div class="cards-grid">
+      <div class="item-card">
+        <img src="css/images/sofa.png" alt="Диван" class="item-img">
+        <div class="item-info">
+          <h2 class="item-title">Диван IKEA «ЭКТОРП»</h2>
+          <p class="item-seller">Продавец: Ivan</p>
+          <p class="item-price">12 000 ₽</p>
+        </div>
+        <div class="item-actions">
+          <button class="btn-small">Редактировать</button>
+          <button class="btn-small btn-danger">Удалить</button>
+        </div>
+      </div>
+
+      <div class="item-card">
+        <img src="css/images/table.png" alt="Стол" class="item-img">
+        <div class="item-info">
+          <h2 class="item-title">Письменный стол</h2>
+          <p class="item-seller">Продавец: Olga</p>
+          <p class="item-price">4 500 ₽</p>
+        </div>
+        <div class="item-actions">
+          <button class="btn-small">Редактировать</button>
+          <button class="btn-small btn-danger">Удалить</button>
+        </div>
+      </div>
+      <!-- добавьте ещё карточки по образцу -->
+    </div>
+
+    <div class="table-actions">
+      <button class="btn">Добавить объявление</button>
+      <a href="admin-dashboard.html" class="btn btn-secondary">Назад</a>
+    </div>
+  </main>
+</body>
+</html>

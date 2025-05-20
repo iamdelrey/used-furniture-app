@@ -1,0 +1,68 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Admin — Пользователи | Used Furniture</title>
+  <link rel="stylesheet" href="css/vintage-navbar.css">
+  <link rel="stylesheet" href="css/admin.css">
+</head>
+<body>
+  <!-- Навбар -->
+  <div class="navbar">
+    <div class="navbar-inner">
+      <div class="navbar-logo">Used Furniture</div>
+      <nav>
+        <a href="home.html">Главная</a>
+        <a href="catalog.html">Каталог</a>
+        <a href="messages.html">Сообщения</a>
+        <a href="sales.html">Продажи</a>
+        <a href="account.html">Аккаунт</a>
+        <a href="admin-dashboard.html">Админ</a>
+      </nav>
+    </div>
+  </div>
+
+  <main class="admin-section">
+    <h1 class="section-title">Управление пользователями</h1>
+
+    <table class="admin-table">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Имя пользователя</th>
+          <th>Email</th>
+          <th>Роль</th>
+          <th>Действия</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1</td>
+          <td>ivan</td>
+          <td>ivan@example.com</td>
+          <td>USER</td>
+          <td>
+            <button class="btn-small">Редактировать</button>
+            <button class="btn-small btn-danger">Удалить</button>
+          </td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td>admin</td>
+          <td>admin@example.com</td>
+          <td>ADMIN</td>
+          <td>
+            <button class="btn-small">Редактировать</button>
+            <button class="btn-small btn-danger">Удалить</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="table-actions">
+      <button class="btn">Добавить пользователя</button>
+      <a href="admin-dashboard.html" class="btn btn-secondary">Назад</a>
+    </div>
+  </main>
+</body>
+</html>

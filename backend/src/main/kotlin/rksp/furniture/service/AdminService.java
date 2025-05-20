@@ -1,4 +1,4 @@
-﻿package rksp.furniture.admin;
+package rksp.furniture.service;
 
 import org.springframework.stereotype.Service;
 import rksp.furniture.model.FurnitureItem;

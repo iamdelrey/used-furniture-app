@@ -2,22 +2,35 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Каталог</title>
+    <title>Каталог | Used Furniture</title>
     <link rel="stylesheet" th:href="@{/css/vintage-navbar.css}">
+    <link rel="stylesheet" th:href="@{/css/catalog.css}">
 </head>
 <body>
-<div th:replace="fragments/vintage-navbar :: navbar(${currentPath})"></div>
-<h2>Каталог мебели</h2>
-<ul>
-    <li th:each="item : ${items}">
-        <b th:text="${item.title}"></b> —
-        <span th:text="${item.description}"></span><br>
-        Цена: <span th:text="${item.price}"></span> ₽<br>
-        Продавец: <span th:text="${item.seller}"></span><br>
-        Состояние: <span th:text="${item.condition}"></span>
-        <hr>
-    </li>
-</ul>
-<a href="/home">На главную</a>
+
+<div th:replace="~{fragments/vintage-navbar :: navbar(currentPath=${currentPath})}"></div>
+
+<main class="catalog-container">
+    <h1 class="catalog-title">Каталог мебели</h1>
+
+    <div class="catalog-grid">
+        <div class="catalog-card" th:each="item : ${items}">
+            <div class="card-image">
+                <!-- плейсхолдер или динамическая картинка -->
+                <img th:src="@{/css/images/sofa.png}" alt="Изображение товара">
+            </div>
+            <div class="card-body">
+                <h2 class="card-title" th:text="${item.title}">Название</h2>
+                <p class="card-desc" th:text="${item.description}">Описание товара</p>
+                <div class="card-info">
+                    <span class="card-price" th:text="${item.price} + ' ₽'">0 ₽</span>
+                    <span class="card-seller" th:text="'Продавец: ' + ${item.seller}">Продавец</span>
+                </div>
+                <div class="card-badge" th:text="${item.condition}">Состояние</div>
+            </div>
+        </div>
+    </div>
+</main>
+
 </body>
 </html>
