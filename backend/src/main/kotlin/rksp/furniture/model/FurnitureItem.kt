@@ -3,12 +3,14 @@
 import jakarta.persistence.*
 
 @Entity
+@Table(name = "furniture_item")
 data class FurnitureItem(
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    val id: Long = 0,
-    val title: String = "",
-    val description: String = "",
-    val price: Double = 0.0,
-    val seller: String = "",
-    val condition: String = ""
+    var id: Long? = null,
+
+    var title: String = "",
+    var description: String = "",
+    var price: Double = 0.0,
+    var seller: String = "",
+    var condition: String = ""
 )

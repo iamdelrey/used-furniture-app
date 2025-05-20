@@ -2,24 +2,31 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Продажи — Used Furniture</title>
+    <title>Мои объявления | Used Furniture</title>
+    <link rel="stylesheet" th:href="@{/css/vintage-navbar.css}">
     <link rel="stylesheet" th:href="@{/css/sales.css}">
 </head>
 <body>
-<div th:replace="fragments/vintage-navbar :: vintageNavbar(currentPath=${currentPath})"></div>
+<div th:replace="~{fragments/vintage-navbar :: navbar(currentPath=${currentPath})}"></div>
+
 <div class="sales-container">
-    <h1>Ваши продажи</h1>
-    <div class="sales-list">
-        <!-- Здесь будет список продаж (пример статичного блока, под реальный список вставляй Thymeleaf-код) -->
-        <div class="sale-item">
-            <img src="/images/chair.png" alt="Проданный стул">
-            <div>
-                <div class="item-title">Винтажный стул</div>
-                <div class="item-date">Продано: 17.05.2025</div>
-                <div class="item-price">4 500 ₽</div>
+    <h2 class="page-title">Мои объявления</h2>
+    <a href="/sales/new" class="btn btn-primary">Добавить объявление</a>
+    <div class="items-list">
+        <div class="item-card" th:each="item : ${items}">
+            <div class="item-title" th:text="${item.title}">Название</div>
+            <div class="item-desc" th:text="${item.description}">Описание</div>
+            <div class="item-info">
+                <span class="item-price" th:text="${item.price} + ' ₽'">0 ₽</span>
+                <span class="item-condition" th:text="${item.condition}">Состояние</span>
+            </div>
+            <div class="item-actions">
+                <a th:href="@{/sales/edit/{id}(id=${item.id})}" class="btn btn-secondary">Редактировать</a>
+                <form th:action="@{/sales/delete/{id}(id=${item.id})}" method="post" style="display:inline">
+                    <button type="submit" class="btn btn-danger" onclick="return confirm('Удалить объявление?');">Удалить</button>
+                </form>
             </div>
         </div>
-        <!-- ... -->
     </div>
 </div>
 </body>

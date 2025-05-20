@@ -1,0 +1,58 @@
+﻿<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${furnitureItem.id} != null ? 'Редактировать объявление' : 'Новое объявление'">Форма объявления</title>
+    <link rel="stylesheet" th:href="@{/css/vintage-navbar.css}">
+    <link rel="stylesheet" th:href="@{/css/sales.css}">
+</head>
+<body>
+<div th:replace="~{fragments/vintage-navbar :: navbar(currentPath=${currentPath})}"></div>
+
+<div class="sale-form-container">
+    <h2 th:text="${furnitureItem.id} != null ? 'Редактировать объявление' : 'Новое объявление'">
+        Заголовок формы
+    </h2>
+    <form th:action="${furnitureItem.id} != null
+                         ? @{/sales/update/{id}(id=${furnitureItem.id})}
+                         : @{/sales}"
+          th:object="${furnitureItem}"
+          method="post">
+
+        <label>
+            Название
+            <input type="text" th:field="*{title}" required />
+        </label>
+
+        <label>
+            Описание
+            <textarea th:field="*{description}" required></textarea>
+        </label>
+
+        <label>
+            Цена, ₽
+            <input type="number" step="0.01" th:field="*{price}" required />
+        </label>
+
+        <label>
+            Состояние
+            <select th:field="*{condition}">
+                <option th:each="c : ${conditions}"
+                        th:value="${c}"
+                        th:text="${c}">
+                </option>
+            </select>
+        </label>
+
+        <div class="sale-form-actions">
+            <button type="submit" class="btn btn-primary">
+                Сохранить
+            </button>
+            <a href="/sales" class="btn btn-secondary">
+                Отмена
+            </a>
+        </div>
+    </form>
+</div>
+</body>
+</html>

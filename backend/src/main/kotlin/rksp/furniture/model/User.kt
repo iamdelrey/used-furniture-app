@@ -5,17 +5,24 @@ import jakarta.persistence.*
 @Entity
 @Table(name = "users")
 data class User(
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    val id: Long = 0,
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    val id: Long? = null,
-
-    @Column(nullable = false, unique = true)
-    val username: String = "",
+    @Column(unique = true, nullable = false)
+    var username: String,
 
     @Column(nullable = false)
-    val password: String = ""
+    var password: String,
 
-) {
-    constructor() : this(null, "", "")
-}
+    @Column(nullable = true)
+    var email: String? = null,
+
+    // вот это добавляем:
+    @ElementCollection(fetch = FetchType.EAGER)
+    @CollectionTable(
+        name = "user_roles",
+        joinColumns = [JoinColumn(name = "user_id")]
+    )
+    @Enumerated(EnumType.STRING)
+    var roles: MutableSet<Role> = mutableSetOf(Role.ROLE_USER)
+)

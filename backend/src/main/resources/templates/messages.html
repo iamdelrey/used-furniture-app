@@ -1,0 +1,41 @@
+﻿<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Сообщения | Used Furniture</title>
+    <link rel="stylesheet" th:href="@{/css/vintage-navbar.css}">
+    <link rel="stylesheet" th:href="@{/css/messages.css}">
+</head>
+<body>
+<!-- Navbar -->
+<div th:replace="~{fragments/vintage-navbar :: navbar(currentPath=${currentPath})}"></div>
+
+<div class="messages-container">
+    <h2 class="page-title">Мои сообщения</h2>
+
+    <!-- Если нет ни одного диалога -->
+    <div class="no-messages" th:if="${#lists.isEmpty(conversations)}">
+        У вас пока нет сообщений. Начните диалог с продавцом из <a href="/catalog">каталога</a>.
+    </div>
+
+    <!-- Список диалогов -->
+    <div class="conversations-list" th:if="${!#lists.isEmpty(conversations)}">
+        <div class="conversation-card"
+             th:each="conv : ${conversations}"
+             th:onclick="|window.location.href='/messages/' + ${conv.id}|">
+            <div class="conv-avatar">
+                <img th:src="${conv.partnerAvatarUrl}" alt="аватар" />
+            </div>
+            <div class="conv-info">
+                <div class="conv-name" th:text="${conv.partnerName}">Имя пользователя</div>
+                <div class="conv-preview" th:text="${conv.lastMessage}">Предпросмотр последнего сообщения…</div>
+            </div>
+            <div class="conv-meta">
+                <span class="conv-time" th:text="${conv.lastTime}">12:45</span>
+                <span class="conv-unread" th:if="${conv.unreadCount>0}" th:text="${conv.unreadCount}">2</span>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

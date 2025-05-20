@@ -1,0 +1,42 @@
+﻿<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Мой аккаунт | Used Furniture</title>
+    <link rel="stylesheet" th:href="@{/css/vintage-navbar.css}">
+    <link rel="stylesheet" th:href="@{/css/account.css}">
+</head>
+<body>
+<!-- Navbar -->
+<div th:replace="~{fragments/vintage-navbar :: navbar(currentPath=${currentPath})}"></div>
+
+<div class="account-container">
+    <h2 class="page-title">Мой аккаунт</h2>
+
+    <form class="profile-form" th:action="@{/account/update}" method="post">
+        <label>
+            Имя пользователя
+            <input type="text" name="username" th:value="${user.username}" required />
+        </label>
+        <label>
+            Email
+            <input type="email" name="email" th:value="${user.email}" required />
+        </label>
+        <label>
+            Новый пароль
+            <input type="password" name="password" placeholder="Оставьте пустым, чтобы не менять" />
+        </label>
+        <button type="submit" class="btn btn-primary">Сохранить</button>
+    </form>
+
+    <div class="account-actions">
+        <form th:action="@{/logout}" method="post">
+            <button type="submit" class="btn btn-secondary">Выйти</button>
+        </form>
+        <form th:action="@{/auth/me}" method="delete" onsubmit="return confirm('Удалить аккаунт безвозвратно?');">
+            <button type="submit" class="btn btn-danger">Удалить аккаунт</button>
+        </form>
+    </div>
+</div>
+</body>
+</html>

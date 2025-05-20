@@ -1,20 +1,48 @@
 ﻿<!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Вход</title>
     <meta charset="UTF-8">
+    <title>Авторизация | Used Furniture</title>
+    <link rel="stylesheet" th:href="@{/css/auth.css}">
 </head>
 <body>
-<h2>Вход</h2>
+<header class="auth-header">Авторизация</header>
 
-<form method="post" action="/login">
-    <input type="text" name="username" placeholder="Имя пользователя" required>
-    <input type="password" name="password" placeholder="Пароль" required>
-    <button type="submit">Войти</button>
-</form>
+<div class="auth-container">
+    <div class="auth-body">
+        <h2>Войдите в аккаунт</h2>
 
-<p th:if="${error}" th:text="${error}" style="color:red;"></p>
+        <form th:action="@{/login}" method="post">
+            <label>
+                Имя пользователя
+                <input
+                        type="text"
+                        name="username"
+                        placeholder="Введите имя пользователя"
+                        required
+                />
+            </label>
 
-<p>Нет аккаунта? <a th:href="@{/register}">Создать</a></p>
+            <label>
+                Пароль
+                <input
+                        type="password"
+                        name="password"
+                        placeholder="Введите пароль"
+                        required
+                />
+            </label>
+
+            <button type="submit" class="btn">Войти</button>
+        </form>
+
+        <p class="error-text" th:if="${error}" th:text="${error}"></p>
+
+        <p class="hint">
+            Нет аккаунта?
+            <a th:href="@{/register}">Зарегистрироваться</a>
+        </p>
+    </div>
+</div>
 </body>
 </html>

@@ -1,113 +1,62 @@
-﻿/*.vintage-navbar {*/
-/*    background: url('/css/images/wood-bg.jpg'), linear-gradient(90deg, #c2b280 0%, #a67c52 100%);*/
-/*    color: #fff8e1;*/
-/*    font-family: 'Georgia', 'Times New Roman', serif;*/
-/*    box-shadow: 0 4px 24px -4px #a67c52a8;*/
-/*    border-bottom: 3px solid #a67c52;*/
-/*    border-radius: 0 0 14px 14px;*/
-/*    margin-bottom: 28px;*/
-/*}*/
-/*.vintage-navbar-inner {*/
-/*    max-width: 1000px;*/
-/*    margin: 0 auto;*/
-/*    display: flex;*/
-/*    align-items: center;*/
-/*    justify-content: space-between;*/
-/*    padding: 0 22px;*/
-/*    height: 60px;*/
-/*}*/
-/*.vintage-logo {*/
-/*    font-family: 'Georgia', 'Times New Roman', serif;*/
-/*    font-size: 1.35rem;*/
-/*    font-weight: bold;*/
-/*    color: #ffe082;*/
-/*    letter-spacing: 1.5px;*/
-/*    text-shadow: 1px 1.5px 6px #6d4c41b8;*/
-/*}*/
-/*.vintage-navbar nav {*/
-/*    display: flex;*/
-/*    align-items: center;*/
-/*    gap: 20px;*/
-/*}*/
-/*.vintage-navbar a {*/
-/*    color: #fff8e1;*/
-/*    text-decoration: none;*/
-/*    font-size: 15px;*/
-/*    font-weight: 500;*/
-/*    padding: 5px 0;*/
-/*    border-bottom: 2px solid transparent;*/
-/*    border-radius: 4px;*/
-/*    transition: color 0.15s, border-color 0.2s, background 0.13s;*/
-/*}*/
-/*.vintage-navbar a:hover,*/
-/*.vintage-navbar a.active {*/
-/*    color: #ffe082;*/
-/*    border-bottom: 2px solid #ffe082;*/
-/*    background: rgba(255, 240, 140, 0.07);*/
-/*}*/
-/*@media (max-width: 600px) {*/
-/*    .vintage-navbar-inner {*/
-/*        flex-direction: column;*/
-/*        align-items: flex-start;*/
-/*        height: auto;*/
-/*        padding: 12px 8px;*/
-/*    }*/
-/*    .vintage-navbar nav {*/
-/*        gap: 12px;*/
-/*        margin-top: 5px;*/
-/*    }*/
-/*}*/
-/* src/main/resources/static/css/navbar-modern.css */
+﻿/* полный width, без центровки */
 .navbar {
     background: #1a202c;
     color: #fff;
     border-radius: 0 0 16px 16px;
+    box-shadow: 0 2px 16px rgba(30,41,59,0.07);
     padding: 0;
     margin-bottom: 32px;
-    font-family: 'Segoe UI', 'Inter', Arial, sans-serif;
-    box-shadow: 0 2px 16px 0 rgba(30,41,59,0.07);
+    font-family: 'Segoe UI','Inter',Arial,sans-serif;
+    width: 100%;
 }
+
+/* убираем max-width и margin auto */
 .navbar-inner {
-    max-width: 1100px;
-    margin: 0 auto;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 0 32px;
+    padding: 0 24px;      /* горизонтальные отступы от края экрана */
     height: 62px;
+    /* max-width: 1100px;  <-- удалили */
+    /* margin: 0 auto;     <-- удалили */
 }
+
 .navbar-logo {
     font-weight: 700;
     font-size: 1.8rem;
     letter-spacing: 1px;
     color: #60a5fa;
 }
+
 .navbar nav {
     display: flex;
-    align-items: center;
     gap: 30px;
 }
+
 .navbar a {
     color: #e5e7eb;
     text-decoration: none;
     font-size: 16px;
     font-weight: 500;
-    padding: 8px 0;
+    padding: 8px 4px;
     border-bottom: 2px solid transparent;
     border-radius: 3px;
-    transition: color 0.17s, border-color 0.13s;
+    transition: color .17s, border-color .13s, background .13s;
 }
-.navbar a:hover, .navbar a.active {
+
+.navbar a:hover,
+.navbar a.active {
     color: #60a5fa;
     border-bottom: 2px solid #60a5fa;
     background: rgba(96,165,250,0.07);
 }
+
 @media (max-width: 700px) {
     .navbar-inner {
         flex-direction: column;
         align-items: flex-start;
         height: auto;
-        padding: 14px 8px;
+        padding: 14px 12px;
     }
     .navbar nav {
         gap: 16px;

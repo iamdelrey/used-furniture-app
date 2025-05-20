@@ -1,0 +1,57 @@
+﻿<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" th:href="@{/css/admin.css}">
+</head>
+<body>
+<div th:replace="~{fragments/vintage-navbar :: navbar(currentPath=${currentPath})}"></div>
+
+<div class="admin-container">
+    <h1>Панель администратора</h1>
+
+    <section>
+        <h2>Пользователи</h2>
+        <table>
+            <tr><th>ID</th><th>Username</th><th>Email</th><th>Роли</th><th>Действия</th></tr>
+            <tr th:each="u : ${users}">
+                <td th:text="${u.id}"></td>
+                <td th:text="${u.username}"></td>
+                <td th:text="${u.email}"></td>
+                <td th:text="${u.roles}"></td>
+                <td>
+                    <form th:action="@{'/admin/user/update/' + ${u.id}}" method="post" style="display:inline">
+                        <button>Сохранить</button>
+                    </form>
+                    <form th:action="@{'/admin/user/delete/' + ${u.id}}" method="post" style="display:inline"
+                          onsubmit="return confirm('Удалить пользователя?')">
+                        <button>Удалить</button>
+                    </form>
+                </td>
+            </tr>
+        </table>
+    </section>
+
+    <section>
+        <h2>Объявления</h2>
+        <table>
+            <tr><th>ID</th><th>Заголовок</th><th>Продавец</th><th>Цена</th><th>Действия</th></tr>
+            <tr th:each="i : ${items}">
+                <td th:text="${i.id}"></td>
+                <td th:text="${i.title}"></td>
+                <td th:text="${i.seller}"></td>
+                <td th:text="${i.price}"></td>
+                <td>
+                    <a th:href="@{'/admin/item/edit/' + ${i.id}}">Редактировать</a>
+                    <form th:action="@{'/admin/item/delete/' + ${i.id}}" method="post" style="display:inline"
+                          onsubmit="return confirm('Удалить объявление?')">
+                        <button>Удалить</button>
+                    </form>
+                </td>
+            </tr>
+        </table>
+    </section>
+</div>
+</body>
+</html>

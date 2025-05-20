@@ -40,12 +40,26 @@ class SecurityConfig(
             .csrf { it.disable() }
             .authorizeHttpRequests {
                 it
-                    .requestMatchers("/", "/home", "/login", "/register", "/catalog", "/css/**").permitAll()
-                    .requestMatchers("/api/**").authenticated()
-                    .anyRequest().denyAll()
+                    .requestMatchers("/", "/home", "/login", "/register", "/catalog", "/css/**")
+                    .permitAll()
+                    .requestMatchers("/sales/**", "/messages/**", "/account/**")
+                    .authenticated()
+                    .requestMatchers("/admin/**")
+                    .hasRole("ADMIN")
+                    .requestMatchers("/api/**")
+                    .authenticated()
+                    .anyRequest()
+                    .denyAll()
             }
             .sessionManagement {
                 it.sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED)
+            }
+            .formLogin {
+                it
+                    .loginPage("/login")
+                    .loginProcessingUrl("/login")
+                    .defaultSuccessUrl("/home", true)
+                    .permitAll()
             }
             .logout {
                 it
@@ -53,6 +67,7 @@ class SecurityConfig(
                     .logoutSuccessUrl("/login")
                     .permitAll()
             }
+            .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter::class.java)
 
         return http.build()
     }

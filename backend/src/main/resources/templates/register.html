@@ -1,17 +1,47 @@
 ﻿<!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Регистрация</title>
+    <meta charset="UTF-8">
+    <title>Регистрация | Used Furniture</title>
+    <link rel="stylesheet" th:href="@{/css/auth.css}">
 </head>
 <body>
-<h2>Регистрация</h2>
-<form method="post" th:action="@{/auth/register}">
-    <input type="text" name="username" placeholder="Имя пользователя" required>
-    <input type="password" name="password" placeholder="Пароль" required>
-    <button type="submit">Зарегистрироваться</button>
-</form>
+<header class="auth-header">Регистрация</header>
 
-<p th:if="${error}" th:text="${error}" style="color:red;"></p>
-<p>Уже есть аккаунт? <a th:href="@{/auth/login}">Войти</a></p>
+<div class="auth-container">
+    <div class="auth-body">
+        <h2>Создайте аккаунт</h2>
+
+        <form th:action="@{/register}" method="post">
+            <label>
+                Имя пользователя
+                <input type="text" name="username" placeholder="Введите имя пользователя" required>
+            </label>
+
+            <label>
+                Электронная почта
+                <input type="email" name="email" placeholder="Введите email" required>
+            </label>
+
+            <label>
+                Пароль
+                <input type="password" name="password" placeholder="Введите пароль" required>
+            </label>
+
+            <label>
+                Подтвердите пароль
+                <input type="password" name="confirmPassword" placeholder="Подтвердите пароль" required>
+            </label>
+
+            <button type="submit" class="btn">Зарегистрироваться</button>
+        </form>
+
+        <p class="error-text" th:if="${error}" th:text="${error}"></p>
+
+        <p class="hint">
+            Уже есть аккаунт? <a th:href="@{/login}">Войти</a>
+        </p>
+    </div>
+</div>
 </body>
 </html>
