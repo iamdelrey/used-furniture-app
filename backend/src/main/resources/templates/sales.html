@@ -1,0 +1,26 @@
+﻿<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Продажи — Used Furniture</title>
+    <link rel="stylesheet" th:href="@{/css/sales.css}">
+</head>
+<body>
+<div th:replace="fragments/vintage-navbar :: vintageNavbar(currentPath=${currentPath})"></div>
+<div class="sales-container">
+    <h1>Ваши продажи</h1>
+    <div class="sales-list">
+        <!-- Здесь будет список продаж (пример статичного блока, под реальный список вставляй Thymeleaf-код) -->
+        <div class="sale-item">
+            <img src="/images/chair.png" alt="Проданный стул">
+            <div>
+                <div class="item-title">Винтажный стул</div>
+                <div class="item-date">Продано: 17.05.2025</div>
+                <div class="item-price">4 500 ₽</div>
+            </div>
+        </div>
+        <!-- ... -->
+    </div>
+</div>
+</body>
+</html>

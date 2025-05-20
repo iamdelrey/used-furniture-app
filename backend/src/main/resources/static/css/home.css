@@ -1,0 +1,86 @@
+﻿/* src/main/resources/static/css/home.css */
+.home-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 36px 18px 0 18px;
+    font-family: 'Segoe UI', 'Inter', Arial, sans-serif;
+    color: #1a202c;
+}
+
+.home-header {
+    font-size: 2.4rem;
+    font-weight: 700;
+    margin-bottom: 12px;
+    color: #2563eb;
+}
+
+.home-subtitle {
+    font-size: 1.15rem;
+    margin-bottom: 22px;
+    color: #334155;
+    font-weight: 500;
+}
+
+.home-features {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 22px;
+    margin-bottom: 36px;
+}
+
+.home-feature {
+    background: #f1f5f9;
+    border-radius: 14px;
+    box-shadow: 0 1px 6px rgba(30,41,59,0.06);
+    padding: 16px 22px;
+    min-width: 210px;
+    flex: 1 1 200px;
+    font-size: 1.05rem;
+    color: #2563eb;
+}
+
+.hot-listings-header {
+    font-size: 1.35rem;
+    font-weight: 600;
+    color: #3b82f6;
+    margin-bottom: 12px;
+    margin-top: 28px;
+}
+
+.hot-listings {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 22px;
+}
+
+.hot-card {
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 2px 12px rgba(30,41,59,0.07);
+    padding: 18px 22px;
+    width: 270px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    border: 1px solid #e5e7eb;
+    transition: box-shadow 0.15s;
+}
+.hot-card:hover {
+    box-shadow: 0 4px 24px rgba(30,41,59,0.12);
+}
+.hot-card-title {
+    font-size: 1.09rem;
+    font-weight: 600;
+    color: #2563eb;
+    margin-bottom: 5px;
+}
+.hot-card-desc {
+    font-size: 0.98rem;
+    color: #334155;
+    margin-bottom: 7px;
+}
+.hot-card-price {
+    font-size: 1.05rem;
+    font-weight: 500;
+    color: #f59e42;
+}

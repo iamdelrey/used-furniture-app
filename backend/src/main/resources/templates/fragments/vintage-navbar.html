@@ -1,10 +1,4 @@
-﻿<!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-<head>
-    <link rel="stylesheet" href="/css/navbar.css">
-</head>
-<body>
-<div th:fragment="navbar">
+﻿<div th:fragment="navbar(currentPath)">
     <div class="navbar">
         <div class="navbar-inner">
             <div class="navbar-logo">Used Furniture</div>
@@ -18,5 +12,3 @@
         </div>
     </div>
 </div>
-</body>
-</html>

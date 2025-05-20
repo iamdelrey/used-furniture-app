@@ -2,72 +2,45 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Used Furniture — Главная</title>
-    <link rel="stylesheet" href="/css/navbar.css">
-    <style>
-        body {
-            font-family: sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f9f9f9;
-        }
-        header {
-            background-color: #3b82f6;
-            color: white;
-            padding: 16px 32px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        nav a {
-            margin: 0 12px;
-            color: white;
-            text-decoration: none;
-            font-weight: 500;
-        }
-        nav a:hover {
-            text-decoration: underline;
-        }
-        .hero {
-            padding: 60px 32px;
-            text-align: center;
-        }
-        .hero h1 {
-            font-size: 2.5rem;
-            margin-bottom: 16px;
-        }
-        .hero p {
-            font-size: 1.2rem;
-            color: #444;
-        }
-        .auth-buttons {
-            margin-top: 32px;
-        }
-        .auth-buttons a {
-            padding: 10px 20px;
-            margin: 0 10px;
-            background-color: #3b82f6;
-            color: white;
-            border-radius: 8px;
-            text-decoration: none;
-            font-weight: bold;
-        }
-        .auth-buttons a:hover {
-            background-color: #2563eb;
-        }
-    </style>
+    <title>Главная | Used Furniture</title>
+    <link rel="stylesheet" th:href="@{/css/vintage-navbar.css}">
+    <link rel="stylesheet" th:href="@{/css/home.css}">
 </head>
 <body>
-<div th:replace="~{fragments/navbar :: navbar}"></div>
+<div th:replace="fragments/vintage-navbar :: navbar(${currentPath})"></div>
 
-<div class="hero">
-    <h1>Покупайте и продавайте подержанную мебель с лёгкостью</h1>
-    <p>Простая платформа для размещения объявлений, общения и управления продажами.</p>
+<div class="home-container">
+    <div class="home-header">Добро пожаловать в Used Furniture!</div>
+    <div class="home-subtitle">
+        Ваш надёжный сервис для покупки и продажи подержанной мебели. Экономьте деньги, находите уникальные вещи и продавайте то, что вам больше не нужно.
+    </div>
 
-    <div class="auth-buttons">
-        <a href="/login">Войти</a>
-        <a href="/register">Зарегистрироваться</a>
+    <div class="home-features">
+        <div class="home-feature">Быстрая регистрация и интуитивный интерфейс</div>
+        <div class="home-feature">Объявления от реальных пользователей вашего города</div>
+        <div class="home-feature">Безопасные сделки и рейтинг продавцов</div>
+        <div class="home-feature">Возможность написать продавцу напрямую</div>
+    </div>
+
+    <div class="hot-listings-header">Горячие объявления сегодня:</div>
+    <div class="hot-listings">
+        <div class="hot-card">
+            <div class="hot-card-title">Диван IKEA "ЭКТОРП"</div>
+            <div class="hot-card-desc">Уютный трёхместный диван, хорошее состояние. Съёмные чехлы, легко чистятся.</div>
+            <div class="hot-card-price">12 000 ₽</div>
+        </div>
+        <div class="hot-card">
+            <div class="hot-card-title">Обеденный стол из массива дуба</div>
+            <div class="hot-card-desc">Натуральное дерево, минимальные царапины. Отлично впишется в любой интерьер.</div>
+            <div class="hot-card-price">7 500 ₽</div>
+        </div>
+        <div class="hot-card">
+            <div class="hot-card-title">Комплект стульев (4 шт.)</div>
+            <div class="hot-card-desc">Современный дизайн, почти не использовались. Продаю в связи с переездом.</div>
+            <div class="hot-card-price">5 800 ₽</div>
+        </div>
     </div>
 </div>
+
 </body>
 </html>

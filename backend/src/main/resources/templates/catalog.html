@@ -3,9 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <title>Каталог</title>
+    <link rel="stylesheet" th:href="@{/css/vintage-navbar.css}">
 </head>
 <body>
-<div th:replace="~{fragments/navbar :: navbar}"></div>
+<div th:replace="fragments/vintage-navbar :: navbar(${currentPath})"></div>
 <h2>Каталог мебели</h2>
 <ul>
     <li th:each="item : ${items}">
