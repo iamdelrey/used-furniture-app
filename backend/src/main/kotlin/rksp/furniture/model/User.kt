@@ -6,18 +6,17 @@ import jakarta.persistence.*
 @Table(name = "users")
 data class User(
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    val id: Long = 0,
+    var id: Long = 0,                             // теперь var и со значением по умолчанию
 
     @Column(unique = true, nullable = false)
-    var username: String,
+    var username: String = "",                    // дефолтное значение
 
     @Column(nullable = false)
-    var password: String,
+    var password: String = "",                    // дефолтное значение
 
     @Column(nullable = true)
     var email: String? = null,
 
-    // вот это добавляем:
     @ElementCollection(fetch = FetchType.EAGER)
     @CollectionTable(
         name = "user_roles",

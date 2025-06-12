@@ -40,16 +40,14 @@ class SecurityConfig(
             .csrf { it.disable() }
             .authorizeHttpRequests {
                 it
-                    .requestMatchers("/", "/home", "/login", "/register", "/catalog", "/css/**")
-                    .permitAll()
-                    .requestMatchers("/sales/**", "/messages/**", "/account/**")
-                    .authenticated()
-                    .requestMatchers("/admin/**")
-                    .hasRole("ADMIN")
-                    .requestMatchers("/api/**")
-                    .authenticated()
-                    .anyRequest()
-                    .denyAll()
+                    .requestMatchers(
+                        "/", "/home", "/login", "/register", "/catalog",
+                        "/css/**", "/js/**", "/uploads/**"
+                    ).permitAll()
+                    .requestMatchers("/sales/**", "/messages/**", "/account/**").authenticated()
+                    .requestMatchers("/admin/**").hasRole("ADMIN")
+                    .requestMatchers("/api/**").authenticated()
+                    .anyRequest().denyAll()
             }
             .sessionManagement {
                 it.sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED)
